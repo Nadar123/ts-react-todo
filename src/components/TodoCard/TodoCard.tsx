@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeToDo } from "../../features/todoSlice";
-
+import { SingleTodo, Remove } from "./StyleTodoCard";
 interface TodoTypes {
   todo: string;
   index: number;
@@ -9,16 +9,17 @@ interface TodoTypes {
 const TodoCard = ({ todo, index }: TodoTypes) => {
   const dispatch = useDispatch();
   return (
-    <>
-      <div
+    <SingleTodo>
+      {todo}
+      <Remove
+        className=""
         onClick={() => {
           dispatch(removeToDo(index));
         }}
-        className="reservation-card-container"
       >
-        {todo}
-      </div>
-    </>
+        x
+      </Remove>
+    </SingleTodo>
   );
 };
 

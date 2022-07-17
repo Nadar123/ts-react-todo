@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToDo } from "../../features/todoSlice";
 import { RootState } from "../../app/store";
+import { InputContainer, Input, SubmitButton, ErrorMsg } from "./StyleNewTodo";
 
 const NewTodo: React.FC = () => {
   const [todoInput, setTodoInput] = useState("");
   const [errorInput, setErorrInput] = useState("");
-
-  const todos = useSelector((state: RootState) => state.todo.value);
 
   const dispatch = useDispatch();
 
@@ -21,15 +20,15 @@ const NewTodo: React.FC = () => {
   };
 
   return (
-    <div className="reservation-input-container">
-      <input
+    <InputContainer>
+      <Input
         type="text"
         value={todoInput}
         onChange={(e) => setTodoInput(e.target.value)}
       />
-      {errorInput && <p>{errorInput}</p>}
-      <button onClick={handleAddTodo}>Add</button>
-    </div>
+      <SubmitButton onClick={handleAddTodo}>Add</SubmitButton>
+      {errorInput && <ErrorMsg>{errorInput}</ErrorMsg>}
+    </InputContainer>
   );
 };
 
